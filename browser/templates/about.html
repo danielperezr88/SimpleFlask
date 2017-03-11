@@ -1,0 +1,34 @@
+{% extends "index.html" %}{% set headerized_class = 'non-headerized' %}
+{% block breadcrumbs %}
+  <span onclick="window.location.href='/about'">about us</span>
+{% endblock %}
+{% block body %}
+  <h3>About us:</h3>
+  <p>This incredible app was developed by the little elfs inside rpi-zero-w.</p>
+{% endblock %}
+{% block footer_extra %}
+  <script>
+
+    var interval = Math.floor(1000 / 60 * 10);
+    var resizeTimer;
+    var wrapper = $('#form-inner-wrapper');
+    function wrapper_resize() {
+      wrapper.css('width', Math.max.apply(null, [270,parseInt($(window).width()/2)]));
+    }
+
+    $(document).ready(function(){
+      window.addEventListener('resize', function (event) {
+        if (resizeTimer !== false) {
+          clearTimeout(resizeTimer);
+        }
+        resizeTimer = setTimeout(function () {
+          wrapper_resize();
+        }, interval);
+      });
+
+      wrapper_resize()
+
+    });
+
+  </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+
+*.iml
+
+*.txt
+!LICENSE.txt
+
+*.pyc
+
+*.pid
+
+*.log
+
+.idea/
+
+*local.py
