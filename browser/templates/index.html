@@ -4,7 +4,7 @@
     <img src="" style="float: right;height: 46px;padding: 21px 21px 0 0;">
     <ul id="header-nav">
       <li>
-        <a href="{% if session.logged_in %}/{{ iid or '0' }}/{{ tf or 31 }}/index{% else %}login{% endif %}" id="head-main">
+        <a href="/index" id="head-main">
           <h1>Simple Flask App</h1>
           <p>for unlimited fun</p>
         </a>
@@ -49,5 +49,29 @@
     </div>
   </div>
   {% block footer_extra %}
+  <script>
+
+    var interval = Math.floor(1000 / 60 * 10);
+    var resizeTimer;
+    var wrapper = $('#form-inner-wrapper');
+    function wrapper_resize() {
+      wrapper.css('width', Math.max.apply(null, [270,parseInt($(window).width()/2)]));
+    }
+
+    $(document).ready(function(){
+      window.addEventListener('resize', function (event) {
+        if (resizeTimer !== false) {
+          clearTimeout(resizeTimer);
+        }
+        resizeTimer = setTimeout(function () {
+          wrapper_resize();
+        }, interval);
+      });
+
+      wrapper_resize()
+
+    });
+
+  </script>
   {% endblock %}
 {% endblock %}

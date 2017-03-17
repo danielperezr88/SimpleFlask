@@ -2,3 +2,5 @@ master:
   build: .
   ports:
     - "80:80"
+  volumes:
+    - /dev:/dev

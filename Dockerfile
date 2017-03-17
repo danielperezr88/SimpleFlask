@@ -13,12 +13,12 @@ RUN pip install --upgrade pip && \
 	pip install superlance==1.0.0 && \
 	pip install wiringpi
 
-RUN curl -fSL "https://github.com/danielperezr88/SimpleFlask/archive/v1.0.tar.gz" -o SimpleFlask.tar.gz && \
+RUN curl -fSL "https://github.com/danielperezr88/SimpleFlask/archive/v1.0.1.tar.gz" -o SimpleFlask.tar.gz && \
 	tar -xf SimpleFlask.tar.gz -C . && \
 	mkdir /app && \
-	mv SimpleFlask-1.0/* /app/ && \
+	mv SimpleFlask-1.0.1/* /app/ && \
 	rm SimpleFlask.tar.gz && \
-	rm -rf SimpleFlask-1.0 && \
+	rm -rf SimpleFlask-1.0.1 && \
 	mv /app/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 80

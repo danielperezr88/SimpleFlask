@@ -1,5 +1,4 @@
-from flask import Flask, render_template, redirect, abort
-import werkzeug.exceptions as ex
+from flask import Flask, render_template
 from binascii import hexlify
 from os import urandom
 
@@ -7,30 +6,19 @@ app = Flask(__name__, static_folder='browser/static', template_folder='browser/t
 PORT = 80
 
 
-class NotFound(ex.HTTPException):
-    code = 404
-    description = 'This is not the page you are looking for.'
-
-abort.mapping[404] = NotFound
-
-
 def run():
-    flask_options = dict(port=PORT, host='0.0.0.0', debug=True)
+    flask_options = dict(port=PORT, host='0.0.0.0')
     app.secret_key = hexlify(urandom(24))#hexlify(bytes('development_', encoding='latin-1'))
     app.run(**flask_options)
 
 
 @app.route('/', methods=['GET'])
-def root():
-    return redirect('/index')
-
-
-@app.route('/index', methods=['GET'])
+@app.route('/index', methods=['GET'], strict_slashes=False)
 def index():
     return render_template('index.html')
 
 
-@app.route('/about', methods=['GET'])
+@app.route('/about', methods=['GET'], strict_slashes=False)
 def about():
     return render_template('about.html')
 
